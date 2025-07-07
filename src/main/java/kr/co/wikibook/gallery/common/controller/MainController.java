@@ -1,4 +1,4 @@
-package kr.co.wikibook.gallary.common.controller;
+package kr.co.wikibook.gallery.common.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

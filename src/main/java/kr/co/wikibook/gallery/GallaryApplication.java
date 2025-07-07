@@ -1,4 +1,4 @@
-package kr.co.wikibook.gallary;
+package kr.co.wikibook.gallery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
