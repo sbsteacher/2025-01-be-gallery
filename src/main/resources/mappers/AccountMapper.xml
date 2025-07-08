@@ -2,11 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.wikibook.gallery.account.AccountMapper">
 
-    <select id="findByLoginIdAndLoginPw">
+    <insert id="save">
+        INSERT INTO members
+           SET name = #{name}
+             , login_id = #{loginId}
+             , login_pw = #{loginPw}
+    </insert>
+
+    <select id="findByLoginId">
         SELECT id, login_pw
         FROM members
         WHERE login_id = #{loginId}
-        AND login_pw = #{loginPw}
     </select>
 
 </mapper>
