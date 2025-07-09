@@ -27,7 +27,7 @@ public class AccountController {
             return ResponseEntity.badRequest().build(); //state: 400
         }
 
-        int result =  accountService.join(req);
+        int result = accountService.join(req);
         return ResponseEntity.ok(result); //state: 200
     }
 
