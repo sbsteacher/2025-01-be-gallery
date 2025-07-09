@@ -16,5 +16,9 @@
          WHERE c.member_id = #{memberId}
     </select>
 
-
+    <delete id="deleteByMemberIdAndItemId">
+        DELETE FROM carts
+         WHERE member_id = #{memberId}
+           AND item_id = #{itemId}
+    </delete>
 </mapper>
