@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.wikibook.gallery.cart.CartMapper">
+
     <insert id="save">
         INSERT INTO carts
            SET member_id = #{memberId}
              , item_id = #{itemId}
     </insert>
+
+    <select id="findAllWithItemByMemberId">
+        SELECT c.id, i.name, i.price, i.img_path, i.discount_per
+          FROM carts c
+          JOIN items i
+            ON i.id = c.item_id
+         WHERE c.member_id = #{memberId}
+    </select>
+
+
 </mapper>
