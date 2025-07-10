@@ -16,7 +16,7 @@ public class CartService {
     private final CartMapper cartMapper;
 
     public int save(CartPostReq req) {
-        return cartMapper.save(req);
+       return cartMapper.save(req);
     }
 
     public List<CartGetRes> findAll(int memberId) {
@@ -25,5 +25,9 @@ public class CartService {
 
     public int remove(CartDeleteReq req) {
         return cartMapper.deleteByCartIdAndMemberId(req);
+    }
+
+    public int removeAll(int memberId) {
+        return cartMapper.deleteByMemberId(memberId);
     }
 }
