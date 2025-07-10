@@ -9,7 +9,7 @@
     </insert>
 
     <select id="findAllWithItemByMemberId">
-        SELECT c.id, i.name, i.price, i.img_path, i.discount_per
+        SELECT c.id, c.item_id, i.name, i.price, i.img_path, i.discount_per
           FROM carts c
           JOIN items i
             ON i.id = c.item_id
