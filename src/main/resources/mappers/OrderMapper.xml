@@ -12,4 +12,12 @@
                 , card_number = #{cardNumber}
              </if>
     </insert>
+
+    <select id="findAllByMemberIdOrderByIdDesc">
+        SELECT id, name, payment, amount, created
+          FROM orders
+         WHERE member_id = #{memberId}
+         ORDER BY id DESC
+    </select>
+
 </mapper>
