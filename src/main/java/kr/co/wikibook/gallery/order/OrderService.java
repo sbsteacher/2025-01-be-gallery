@@ -8,7 +8,9 @@ import kr.co.wikibook.gallery.order.model.OrderPostReq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Transient;
 import java.util.List;
 
 @Slf4j
@@ -19,7 +21,9 @@ public class OrderService {
     private final OrderItemMapper orderItemMapper;
     private final ItemMapper itemMapper;
 
+    @Transactional
     public int saveOrder(OrderPostReq req, int logginedMemberId) {
+
         //상품 정보 DB로 부터 가져온다.
         List<ItemGetRes> itemList = itemMapper.findAllByIdIn(req.getItemIds());
 
@@ -41,7 +45,8 @@ public class OrderService {
         log.info("after-orderPostDto={}", orderPostDto);
 
         // OrderItemPostDto 객체화 하시면서 데이터 넣어주세요.
-        OrderItemPostDto orderItemPostDto = new OrderItemPostDto(0, req.getItemIds());
+        OrderItemPostDto orderItemPostDto = new OrderItemPostDto(orderPostDto.getOrderId(), req.getItemIds());
+        int resultDetail = orderItemMapper.save(orderItemPostDto);
 
         return 1;
     }

@@ -24,6 +24,6 @@ public class OrderController {
         int logginedMemberId = (int) HttpUtils.getSessionValue(httpReq, AccountConstants.MEMBER_ID_NAME);
         log.info("req: {}", req);
         int result = orderService.saveOrder(req, logginedMemberId);
-        return null;
+        return ResponseEntity.ok(result);
     }
 }
