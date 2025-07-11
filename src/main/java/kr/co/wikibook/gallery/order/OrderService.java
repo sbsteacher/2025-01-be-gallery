@@ -3,10 +3,7 @@ package kr.co.wikibook.gallery.order;
 import kr.co.wikibook.gallery.cart.CartMapper;
 import kr.co.wikibook.gallery.item.ItemMapper;
 import kr.co.wikibook.gallery.item.model.ItemGetRes;
-import kr.co.wikibook.gallery.order.model.OrderGetRes;
-import kr.co.wikibook.gallery.order.model.OrderItemPostDto;
-import kr.co.wikibook.gallery.order.model.OrderPostDto;
-import kr.co.wikibook.gallery.order.model.OrderPostReq;
+import kr.co.wikibook.gallery.order.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,7 +23,6 @@ public class OrderService {
 
     @Transactional
     public int saveOrder(OrderPostReq req, int logginedMemberId) {
-
         //상품 정보 DB로 부터 가져온다.
         List<ItemGetRes> itemList = itemMapper.findAllByIdIn(req.getItemIds());
 
@@ -58,5 +54,11 @@ public class OrderService {
 
     public List<OrderGetRes> findAllByMemberId(int memberId) {
         return orderMapper.findAllByMemberIdOrderByIdDesc(memberId);
+    }
+
+    public OrderDetailGetRes detail(OrderDetailGetReq req) {
+        OrderDetailGetRes result = orderMapper.findByOrderIdAndMemberId(req);
+        log.info("result={}", result);
+        return result;
     }
 }
