@@ -4,8 +4,8 @@ constants:
 
 spring:
   datasource:
-    url: jdbc:mariadb://192.168.0.74/gallery
-    username: root
-    password:
+    url: jdbc:mariadb://192.168.0.74/first_project
+    username: green4
+    password: green4
     driver-class-name: org.mariadb.jdbc.Driver
 
