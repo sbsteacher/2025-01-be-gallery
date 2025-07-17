@@ -6,9 +6,10 @@ spring:
   application:
     name: gallery
   datasource:
-    url: jdbc:mariadb://localhost/gallery
+    url: jdbc:log4jdbc:mariadb://localhost/gallery
     username: root
     password: green502
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
 mybatis:
   configuration:
