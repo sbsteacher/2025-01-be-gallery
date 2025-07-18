@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.wikibook.gallery.item.ItemMapper">
 
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO items
+           SET name = #{name}
+             , img_path = #{imgPath}
+             , price = #{price}
+             , discount_per = #{discountPer}
+    </insert>
+
     <select id="findAllByIdIn">
         SELECT id, name, img_path, price, discount_per
           FROM items
