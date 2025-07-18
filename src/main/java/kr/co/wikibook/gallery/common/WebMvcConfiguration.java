@@ -33,14 +33,14 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver() {
                   @Override
-                  protected Resource getResource(String resourcecPath, Resource location) throws IOException {
-                      Resource resource = location.createRelative(resourcecPath);
+                  protected Resource getResource(String resourcePath, Resource location) throws IOException {
+                      Resource resource = location.createRelative(resourcePath);
 
                       if(resource.exists() && resource.isReadable()) {
                           return resource;
                       }
 
-                      return new ClassPathResource("/static.index.html");
+                      return new ClassPathResource("/static/index.html");
                   }
                 });
     }
