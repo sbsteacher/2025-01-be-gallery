@@ -3,9 +3,14 @@ package kr.co.wikibook.gallery.common;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.PathResourceResolver;
+
+import java.io.IOException;
 
 @Slf4j
 @Configuration //빈등록
@@ -24,9 +29,20 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 .addResourceLocations("file:" + uploadPath);
 
         registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/");
+                .addResourceLocations("classpath:/static/")
+                .resourceChain(true)
+                .addResolver(new PathResourceResolver() {
+                  @Override
+                  protected Resource getResource(String resourcecPath, Resource location) throws IOException {
+                      Resource resource = location.createRelative(resourcecPath);
 
+                      if(resource.exists() && resource.isReadable()) {
+                          return resource;
+                      }
 
+                      return new ClassPathResource("/static.index.html");
+                  }
+                });
     }
 
     @Override
