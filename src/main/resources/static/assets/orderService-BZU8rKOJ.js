@@ -1,0 +1,1 @@
+import{y as t}from"./index--pH74L_3.js";const s="/order",a=r=>t.post(s,r).catch(e=>e.response),c=()=>t.get(s).catch(r=>r.response),n=r=>t.get(`${s}/${r}`).catch(e=>e.response);export{a,n as b,c as g};
